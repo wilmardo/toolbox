@@ -1,0 +1,112 @@
+# Toolbox
+
+## Git
+
+```bash
+# .git/config
+
+filemode = false
+```
+
+## Docker
+For file sharing this is needed (https://stackoverflow.com/questions/42203488/settings-to-windows-firewall-to-allow-docker-for-windows-to-share-drive):
+
+`Set-NetConnectionProfile -interfacealias "vEthernet (DockerNAT)" -NetworkCategory Private`
+
+
+## VS Code
+Set VS Code to end of line /n in settings
+
+https://blogs.msdn.microsoft.com/stevelasker/2016/06/14/configuring-docker-for-windows-volumes/
+Add a new user. I use DockerHost > Pass never expire, not change pass
+Add to Administator group & add to docker-users group
+Login is user and open C:\users
+Enable C:\ sharing in Docker
+
+Compose not working:
+https://github.com/docker/compose/issues/1339
+
+
+## WSL
+
+### Change /mnt/c to /c/
+```ini
+# /etc/wsl.conf
+
+[automount]
+root = /
+options = "metadata"
+```
+
+### Change homedir to windows dir
+`sudo usermod -d /c/users/wilmaro -m wilmardo`
+`sudo mount --bind --verbose /c/Users/wilmaro /home/wilmardo`
+
+### WSL oh my zsh
+`sudo apt-get install zsh`
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+
+### Setup zsh on launch
+```bash
+# ~/.bashrc
+
+# Launch Zsh
+if [ -t 1 ]; then
+exec zsh
+fi
+```
+
+### Download and set font
+Install to windows and set in wsl properties
+https://github.com/powerline/fonts/tree/master/DejaVuSansMono
+
+### Download dir theme
+Clone this somewhere
+https://github.com/seebi/dircolors-solarized
+
+### Setup zsh
+```bash
+# ~/.zshrc
+
+ZSH_THEME="agnoster"
+eval `dircolors ~/term-config/dircolors-solarized/dircolors.256dark`
+export DEFAULT_USER="$(whoami)"
+```
+
+### Docker host
+```bash
+# ~/.zshrc
+
+export DOCKER_HOST=tcp://127.0.0.1:2375
+```
+
+### Docker client only install
+```bash
+curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | \
+sudo tar -zxC "/usr/bin/" --strip-components=1 docker/docker
+```
+
+## Tmux
+
+### Setup tmux
+
+```bash
+# ~/.tmux.conf
+
+### Tmux scrolling copy pasting
+set -g mouse on
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
+bind -n WheelDownPane select-pane -t= \; send-keys -M
+bind -n C-WheelUpPane select-pane -t= \; copy-mode -e \; send-keys -M
+bind -T copy-mode-vi    C-WheelUpPane   send-keys -X halfpage-up
+bind -T copy-mode-vi    C-WheelDownPane send-keys -X halfpage-down
+bind -T copy-mode-emacs C-WheelUpPane   send-keys -X halfpage-up
+bind -T copy-mode-emacs C-WheelDownPane send-keys -X halfpage-down
+
+# To copy, left click and drag to highlight text in yellow,
+# once you release left click yellow text will disappear and will automatically be available in clibboard
+# # Use vim keybindings in copy mode
+setw -g mode-keys vi
+# Release of left mouse to copy
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "clip.exe"
+```
