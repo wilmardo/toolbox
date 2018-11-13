@@ -1,0 +1,68 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    versions:
+      - v1.12.2
+      - v1.12.1
+      - v1.12.0
+      - v1.11.4
+      - v1.11.3
+      - v1.11.2
+      - v1.11.1
+      - v1.11.0
+      - v1.10.9
+      - v1.10.8
+      - v1.10.7
+      - v1.10.6
+      - v1.10.5
+      - v1.10.4
+      - v1.10.3
+      - v1.10.2
+      - v1.10.1
+      - v1.10.0
+
+  tasks:
+    - name: Get hyperkube amd64 sha256hash
+      shell: "curl -sL https://storage.googleapis.com/kubernetes-release/release/{{ item }}/bin/linux/amd64/hyperkube | sha256sum | cut -c 1-64"
+      loop: "{{ versions }}"
+      register: hyperkube_amd64_hashes
+
+    - name: Get hyperkube arm64 sha256hash
+      shell: "curl -sL https://storage.googleapis.com/kubernetes-release/release/{{ item }}/bin/linux/arm64/hyperkube | sha256sum | cut -c 1-64"
+      loop: "{{ versions }}"
+      register: hyperkube_arm64_hashes
+
+    - name: Get kubeadm amd64 sha256hash
+      shell: "curl -sL https://storage.googleapis.com/kubernetes-release/release/{{ item }}/bin/linux/amd64/kubeadm | sha256sum | cut -c 1-64"
+      loop: "{{ versions }}"
+      register: kubeadm_amd64_hashes
+
+    - name: Get kubeadm arm64 sha256hash
+      shell: "curl -sL https://storage.googleapis.com/kubernetes-release/release/{{ item }}/bin/linux/arm64/kubeadm | sha256sum | cut -c 1-64"
+      loop: "{{ versions }}"
+      register: kubeadm_arm64_hashes
+
+    - copy:
+        content: |
+          hyperkube_checksums:
+            amd64:
+          {% for hash in hyperkube_amd64_hashes.results %}
+              {{ hash.item }}: {{ hash.stdout }}
+          {% endfor %}
+            arm64:
+          {% for hash in hyperkube_arm64_hashes.results %}
+              {{ hash.item }}: {{ hash.stdout }}
+          {% endfor %}
+
+          kubeadm_checksums:
+            amd64:
+          {% for hash in kubeadm_amd64_hashes.results %}
+              {{ hash.item }}: {{ hash.stdout }}
+          {% endfor %}
+            arm64:
+          {% for hash in kubeadm_arm64_hashes.results %}
+              {{ hash.item }}: {{ hash.stdout }}
+          {% endfor %}
+        dest: output.yml
