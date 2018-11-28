@@ -110,3 +110,13 @@ setw -g mode-keys vi
 # Release of left mouse to copy
 bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "clip.exe"
 ```
+
+## Gitlab
+
+```yaml
+# Trick to able to clone repo's from CI see: https://stackoverflow.com/a/44702187
+- export BASE_URL=`echo ${CI_REPOSITORY_URL} | sed "s;\/*${CI_PROJECT_PATH}.*;;"`
+
+# Login to Intermax docker registry
+- echo "${DOCKER_REGISTRY_PASSWORD}" | docker login -u awx --password-stdin docker-registry.intermax.nl
+```
