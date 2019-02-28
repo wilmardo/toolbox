@@ -132,3 +132,8 @@ bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "cl
 # Login to Intermax docker registry
 - echo "${DOCKER_REGISTRY_PASSWORD}" | docker login -u awx --password-stdin docker-registry.intermax.nl
 ```
+
+## ZFS
+
+Enable NFS share
+`zfs set sharenfs=on mediastorage/downloads`
