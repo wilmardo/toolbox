@@ -137,3 +137,14 @@ bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "cl
 
 Enable NFS share
 `zfs set sharenfs=on mediastorage/downloads`
+
+## Raspberry pi
+
+```
+# /etc/network/interfaces.d/wlan0
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+        wpa-ssid "SSID"
+        wpa-psk "PASS"
+```
