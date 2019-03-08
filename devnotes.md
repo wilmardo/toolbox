@@ -148,3 +148,18 @@ iface wlan0 inet dhcp
         wpa-ssid "SSID"
         wpa-psk "PASS"
 ```
+
+# Ceph Promox one node
+```
+ceph osd getcrushmap -o crush_map_compressed
+crushtool -d crush_map_compressed -o crush_map_decompressed
+vi crush_map_decompressed
+```
+
+Edit line `step chooseleaf firstn 0 type host` to `step chooseleaf firstn 0 type osd`
+
+Upload to ceph
+```
+crushtool -c crush_map_decompressed -o new_crush_map_compressed
+ceph osd setcrushmap -i new_crush_map_compressed
+```
