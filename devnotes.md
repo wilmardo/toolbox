@@ -163,3 +163,10 @@ Upload to ceph
 crushtool -c crush_map_decompressed -o new_crush_map_compressed
 ceph osd setcrushmap -i new_crush_map_compressed
 ```
+
+# Kubernetes Ceph CSI troubleshoot
+```
+kubectl -n storing logs -f csi-rbdplugin-provisioner-0 csi-provisioner
+kubectl -n storing logs -f csi-rbdplugin-attacher-0
+kubectl -n storing logs --selector app=csi-rbdplugin -c csi-rbdplugin
+```
