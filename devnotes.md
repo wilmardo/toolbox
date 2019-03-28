@@ -2,10 +2,23 @@
 
 ## Git
 
+Enable correct windows file tracking when cloned in WSL
 ```bash
 # .git/config
 
 filemode = false
+```
+
+Enable .gitignore after file has been tracked:
+```bash
+git rm -r --cached .
+git add .
+git commit -m "fixed untracked files"
+```
+
+Recover files lost by a git reset --hard or git clean
+```
+for blob in $(git fsck --full --unreachable --no-reflog | awk '$2 == "blob" { print $3 }'); do git cat-file -p $blob > $blob.txt; done
 ```
 
 ## Docker
