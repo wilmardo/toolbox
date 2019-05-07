@@ -64,8 +64,7 @@ options = "metadata"
 ```
 
 ### Change homedir to windows dir
-`sudo usermod -d /c/users/wilmaro -m wilmardo`
-`sudo mount --bind --verbose /c/Users/wilmaro /home/wilmardo`
+`sudo sed -i 's,/home/wilmardo,/c/Users/wilmaro,g' /etc/passwd`
 
 ### WSL oh my zsh
 `sudo apt-get install zsh`
