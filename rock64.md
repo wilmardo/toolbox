@@ -21,7 +21,6 @@ xzcat bionic-minimal-rock64-0.8.0rc9-1120-arm64.img.xz | sudo dd of=/dev/mmcblk0
 ```
 sudo netplan generate
 sudo nano /etc/netplan/eth0.yaml
-
 ```
 
 ```yaml
@@ -35,4 +34,8 @@ network:
       nameservers:
         addresses: [192.168.1.1]
       dhcp4: no
+```
+
+```
+sudo netplan apply
 ```
