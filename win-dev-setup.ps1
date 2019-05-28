@@ -18,8 +18,8 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 # Install WSL
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
-# Install firefox docker
-choco install -y docker-desktop firefox vscode spotify mattermost-desktop logitech-options
+# Install needed packages with choco
+choco install -y docker-desktop firefox vscode spotify mattermost-desktop logitech-options git postman
 
 # Install ubuntu WSL
 Invoke-WebRequest -Uri $wsl_url -OutFile wsl.appx
