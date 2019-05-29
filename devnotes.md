@@ -182,3 +182,20 @@ kubectl -n storing logs -f csi-rbdplugin-provisioner-0 csi-provisioner
 kubectl -n storing logs -f csi-rbdplugin-attacher-0
 kubectl -n storing logs --selector app=csi-rbdplugin -c csi-rbdplugin
 ```
+
+# Windows
+
+## Fix component store corruption
+On a normal laptop
+```
+dism.exe /Online /Cleanup-Image /RestoreHealth
+``` 
+On something with WSUS
+```
+dism.exe /Online /Cleanup-Image /RestoreHealth /LimitAccess
+``` 
+
+## Cleanup WinSxS 
+```
+Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
+```
