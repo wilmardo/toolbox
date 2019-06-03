@@ -199,3 +199,27 @@ dism.exe /Online /Cleanup-Image /RestoreHealth /LimitAccess
 ```
 Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
 ```
+
+## Proxmox
+
+Import vmdk from untarred ova file
+```
+qm importdisk 125 photon-ova-disk1.vmdk virtualmachines --format vmdk
+```
+
+Disable pve-ha-lrm when running in singlenode to reduce writes to disk [source](https://forum.proxmox.com/threads/pmxcfs-writing-to-disk-all-the-time.35828/#post-175642)
+```
+systemctl stop pve-ha-lrm
+systemctl disbale pve-ha-lrm
+systemctl mask pve-ha-lrm
+```
+
+Set cpu governer to powersave to allow clocking back to save trees
+Setup as @reboot cronjob on the node
+```
+crontab -e
+
+add this line:
+
+@reboot echo "powersave" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+```
