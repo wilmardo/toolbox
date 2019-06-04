@@ -10,8 +10,12 @@ EOF
 # Change homedir to windows user folder
 sed -i 's,/home/wilmardo,/c/Users/wilmaro,g' /etc/passwd
 
-# Install zsh+git
-sudo apt-get install -y zsh git tmux
+# Update all
+sudo apt-get update
+sudo apt-get dist-upgrade
+
+# Install nessacry packages
+sudo apt-get install -y zsh git tmux python3-venv
 
 # Install ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
