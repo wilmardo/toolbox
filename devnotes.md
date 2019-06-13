@@ -223,3 +223,7 @@ add this line:
 
 @reboot echo "powersave" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 ```
+
+## Static compile
+
+staticx, pyinstaller --onefile --add-data=/usr/bin/dist/python3.7
