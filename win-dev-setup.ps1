@@ -35,13 +35,13 @@ function ShowFileExtensions()
 }
 
 # Setup vscode
-code --install-extension ms-vscode.powershell
-code --install-extension k--kato.intellij-idea-keybindings
-code --install-extension peterjausovec.vscode-docker
-code --install-extension shardulm94.trailing-spaces
 code --install-extension vscoss.vscode-ansible
-code --install-extension vscode-icons-team.vscode-icons
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension k--kato.intellij-idea-keybindings
+code --install-extension ms-vscode.powershell
 code --install-extension ms-python.python
+code --install-extension shardulm94.trailing-spaces
+code --install-extension vscode-icons-team.vscode-icons
 
 # Setup powerline fonts for ohmyzsh (needs tuning)
 Invoke-WebRequest -Uri $powerline_font_url -OutFile DejaVuSansMono.ttf
