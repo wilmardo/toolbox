@@ -227,3 +227,9 @@ add this line:
 ## Static compile
 
 staticx, pyinstaller --onefile --add-data=/usr/bin/dist/python3.7
+
+## Ansible
+```
+UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Control socket connect(/c/Users/wilmaro/.ansible/cp/d9e3be2aa2): Permission denied\r\nFailed to connect to new control master", "unreachable": true}
+```
+`export ANSIBLE_SSH_CONTROL_PATH_DIR=/dev/shm`
