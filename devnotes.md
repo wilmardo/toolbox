@@ -176,12 +176,33 @@ crushtool -c crush_map_decompressed -o new_crush_map_compressed
 ceph osd setcrushmap -i new_crush_map_compressed
 ```
 
-# Kubernetes Ceph CSI troubleshoot
+# Kubernetes 
+
+## Ceph CSI troubleshoot
 ```
 kubectl -n storing logs -f csi-rbdplugin-provisioner-0 csi-provisioner
 kubectl -n storing logs -f csi-rbdplugin-attacher-0
 kubectl -n storing logs --selector app=csi-rbdplugin -c csi-rbdplugin
 ```
+
+## Tcpdump one container
+
+Rougly based on https://community.pivotal.io/s/article/How-to-get-tcpdump-for-containers-inside-Kubernetes-pods
+```
+# Find network interface attached to container
+kubectl exec -it -n automating shell -- /bin/sh -c 'cat /sys/class/net/eth0/iflink'
+# Find node where container is running on
+kubectl get pods --all-namespaces -o wide
+
+# SSH to host
+
+# Find interface on worker node
+for i in /sys/class/net/veth*/ifindex; do grep -l 16 $i; done
+
+# Run tcpdump on the veth returned
+sudo tcpdump -i vethdd0877ff -w test2.pcap
+```
+
 
 # Windows
 
