@@ -41,5 +41,5 @@ sudo tar -zxC "/usr/bin/" --strip-components=1 docker/docker
 curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-# Instal minikube https://github.com/kubernetes/minikube/releases/tag/v1.2.0
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.2.0/minikube-linux-amd64 && chmod +x minikube && sudo cp minikube /usr/local/bin/ && rm minikube
+# Instal kind https://github.com/kubernetes-sigs/kind/releases
+curl -Lo kind https://github.com/kubernetes-sigs/kind/releases/download/v0.4.0/kind-linux-amd64 && chmod +x kind && sudo mv kind /usr/local/bin/
