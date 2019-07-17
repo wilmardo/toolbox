@@ -35,7 +35,7 @@ wget -O ~/.tmux.conf https://gist.githubusercontent.com/wilmardo/77007a3f760b52a
 
 # Setup docker client only
 curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | \
-sudo tar -zxC "/usr/bin/" --strip-components=1 docker/docker
+sudo tar -zxC "/usr/bin/local" --strip-components=1 docker/docker
 
 # Install docker-compose (https://github.com/docker/compose/releases/)
 curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
@@ -43,3 +43,7 @@ chmod +x /usr/local/bin/docker-compose
 
 # Instal kind https://github.com/kubernetes-sigs/kind/releases
 curl -Lo kind https://github.com/kubernetes-sigs/kind/releases/download/v0.4.0/kind-linux-amd64 && chmod +x kind && sudo mv kind /usr/local/bin/
+
+#TODO: fix this
+# Install hugo https://github.com/gohugoio/hugo/releases
+curl https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extended_0.55.6_Linux-64bit.tar.gz | sudo tar -zxC "/usr/bin/local" --strip-components=1 hugo
