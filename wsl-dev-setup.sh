@@ -34,11 +34,11 @@ wget -O ~/.zshrc https://gist.githubusercontent.com/wilmardo/0f2fdebf79cd6b4dc79
 wget -O ~/.tmux.conf https://gist.githubusercontent.com/wilmardo/77007a3f760b52ae053d7d4687fa59ab/raw/68176030a6503bc46d004912f4f742ea592c0212/.tmux.conf
 
 # Setup docker client only
-curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | \
-sudo tar -zxC "/usr/bin/local" --strip-components=1 docker/docker
+curl -sL https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | \
+sudo tar -zvxC "/usr/local/bin" --strip-components=1 docker/docker
 
 # Install docker-compose (https://github.com/docker/compose/releases/)
-curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+curl -sL https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 # Instal kind https://github.com/kubernetes-sigs/kind/releases
@@ -46,4 +46,9 @@ curl -Lo kind https://github.com/kubernetes-sigs/kind/releases/download/v0.4.0/k
 
 #TODO: fix this
 # Install hugo https://github.com/gohugoio/hugo/releases
-curl https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extended_0.55.6_Linux-64bit.tar.gz | sudo tar -zxC "/usr/bin/local" --strip-components=1 hugo
+curl -sL https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extended_0.55.6_Linux-64bit.tar.gz | \
+sudo tar -zvxC "/usr/local/bin" hugo
+
+# Install helm
+curl https://get.helm.sh/helm-v3.0.0-alpha.1-linux-amd64.tar.gz | \
+sudo tar -zvxC "/usr/local/bin" --strip-components=1 linux-amd64/helm
