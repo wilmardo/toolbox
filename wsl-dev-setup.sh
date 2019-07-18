@@ -50,5 +50,5 @@ curl -sL https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extende
 sudo tar -zvxC "/usr/local/bin" hugo
 
 # Install helm
-curl https://get.helm.sh/helm-v3.0.0-alpha.1-linux-amd64.tar.gz | \
+curl -sL https://get.helm.sh/helm-v2.14.2-linux-amd64.tar.gz | \
 sudo tar -zvxC "/usr/local/bin" --strip-components=1 linux-amd64/helm
