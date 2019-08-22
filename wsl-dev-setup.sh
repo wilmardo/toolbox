@@ -8,7 +8,9 @@ options = "metadata"
 EOF
 
 # Change homedir to windows user folder
-sed -i 's,/home/wilmardo,/c/Users/wilmaro,g' /etc/passwd
+HOME_DIR=~
+USERNAME=$(whoami) # we assume here that windows and linux username match
+sed -i "s,$HOME_DIR,/c/Users/$USERNAME,g" /etc/passwd
 
 # Update all
 sudo apt-get update
