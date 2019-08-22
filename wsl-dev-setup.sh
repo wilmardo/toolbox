@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ $EUID != 0 ]; then
+    echo 'Script must be run as root, trying sudo...'
+    sudo "$0" "$@"
+    exit $?
+fi
+
 # Setup mount to /c/ instead of /mnt/c/
 cat <<EOF > /etc/wsl.conf
 [automount]
