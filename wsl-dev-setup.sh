@@ -35,13 +35,13 @@ chsh -s $(which zsh)
 mkdir -p term-config/dircolors-solarized
 git clone https://github.com/seebi/dircolors-solarized term-config/dircolors-solarized
 
-# Setup zsh
-wget -O ~/.zshrc https://gist.githubusercontent.com/wilmardo/0f2fdebf79cd6b4dc79d5ca06c79e1f4/raw/8de41e438f341cc2123d40f7aa8f23bc6534291b/.zshrc
+# Setup dotfiles
+git clone --bare git@github.com:wilmardo/dotfiles.git $HOME/.cfg
 
-# Setup tmux
-wget -O ~/.tmux.conf https://gist.githubusercontent.com/wilmardo/77007a3f760b52ae053d7d4687fa59ab/raw/68176030a6503bc46d004912f4f742ea592c0212/.tmux.conf
+source $HOME/.zshrc
 
 # Setup docker client only
+# https://docs.docker.com/install/linux/docker-ce/binaries/
 curl -sL https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | \
 sudo tar -zvxC "/usr/local/bin" --strip-components=1 docker/docker
 

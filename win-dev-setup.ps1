@@ -1,5 +1,6 @@
 $wsl_url="https://aka.ms/wsl-ubuntu-1804"
 $powerline_font_url="https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf"
+$dev_folder="C:/Users/wilmaro/Development"
 
 # Remove all win10 default apps except some usefull ones
 Get-AppxPackage -User $env:UserName | Where{ $_.Name -notin ('DellInc.DellUpdate','Microsoft.WindowsCalculator','WavesAudio.WavesMaxxAudioProforDell','Microsoft.SkypeApp','Microsoft.WindowsStore','c5e2524a-ea46-4f67-841f-6a9465d9d515','c5e2524a-ea46-4f67-841f-6a9465d9d515')} | Remove-AppxPackage
@@ -49,3 +50,7 @@ $fonts_folder = (New-Object -ComObject Shell.Application).Namespace(0x14)
 $fonts_folder.CopyHere((Resolve-Path -Path "DejaVuSansMono.ttf"))
 New-ItemProperty -Name $File.fullname -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" -PropertyType string -Value $File
 Remove-Item -Path font.ttf
+
+#TODO: fix this Pin to Quick Access
+$o = New-Object -com shell.application
+$o.Namespace($dev_folder).Self.InvokeVerb("pintohome")
