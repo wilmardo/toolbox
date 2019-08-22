@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ $EUID != 0 ]; then
+    echo 'Script must be run as root, trying sudo...'
+    sudo "$0" "$@"
+    exit $?
+fi
+
 # Setup mount to /c/ instead of /mnt/c/
 cat <<EOF > /etc/wsl.conf
 [automount]
@@ -8,7 +14,9 @@ options = "metadata"
 EOF
 
 # Change homedir to windows user folder
-sed -i 's,/home/wilmardo,/c/Users/wilmaro,g' /etc/passwd
+HOME_DIR=~
+USERNAME=$(whoami) # we assume here that windows and linux username match
+sed -i "s,$HOME_DIR,/c/Users/$USERNAME,g" /etc/passwd
 
 # Update all
 sudo apt-get update
