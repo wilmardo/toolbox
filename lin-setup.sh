@@ -19,12 +19,12 @@ sudo add-apt-repository \
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 
-# https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo
-wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -
+# https://code.visualstudio.com/docs/setup/linux
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+ sudo apt-get install code-insiders
 
-echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list
-
-sudo apt install codium
 
 
 /org/gnome/desktop/interface/gtk-theme
