@@ -21,6 +21,15 @@ Recover files lost by a git reset --hard or git clean
 for blob in $(git fsck --full --unreachable --no-reflog | awk '$2 == "blob" { print $3 }'); do git cat-file -p $blob > $blob.txt; done
 ```
 
+Squash all commits to one without interactive rebasing a shitload of commits:
+Sauce: https://stackoverflow.com/a/25357146
+```
+ git checkout yourBranch
+ git reset $(git merge-base master yourBranch)
+ git add -A
+ git commit -m "one commit on yourBranch"
+```
+
 ## Docker
 For file sharing this is needed (https://stackoverflow.com/questions/42203488/settings-to-windows-firewall-to-allow-docker-for-windows-to-share-drive):
 
