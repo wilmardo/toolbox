@@ -263,3 +263,16 @@ staticx, pyinstaller --onefile --add-data=/usr/bin/dist/python3.7
 UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Control socket connect(/c/Users/wilmaro/.ansible/cp/d9e3be2aa2): Permission denied\r\nFailed to connect to new control master", "unreachable": true}
 ```
 `export ANSIBLE_SSH_CONTROL_PATH_DIR=/dev/shm`
+
+## Zigbee2mqtt
+
+### Reset router
+CC2531 can be re-paired pressing S2 for 5 seconds.
+СС2530 (the latest version) can be re-paired if you power on/power off it three times (power on, wait 2 seconds, power off, repeat this cycle three times).
+source: https://github.com/Koenkk/zigbee2mqtt/issues/1086#issuecomment-463601551
+
+### Create networkmap
+`mosquitto_sub -h 192.168.1.10 -p 31883 -u <> -P <> -v -t 'zigbee2mqtt/bridge/networkmap/#'`
+`mosquitto_pub -h 192.168.1.10 -p 31883 -u <> -P <> -t 'zigbee2mqtt/bridge/networkmap/routes' -m 'graphviz'`
+Paste into http://www.webgraphviz.com/
+
