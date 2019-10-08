@@ -276,3 +276,27 @@ source: https://github.com/Koenkk/zigbee2mqtt/issues/1086#issuecomment-463601551
 `mosquitto_pub -h 192.168.1.10 -p 31883 -u <> -P <> -t 'zigbee2mqtt/bridge/networkmap/routes' -m 'graphviz'`
 Paste into http://www.webgraphviz.com/
 
+
+## VMware
+
+### Shrink template Linux
+```
+yum clean all
+e4defrag /
+dd if=/dev/zero of=wipefile bs=1M; sync; rm -f wipefile
+```
+
+### Shrink template Windows
+```
+    Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
+    Run disk cleanup as admin
+    defrag c:
+    defrag c: /X
+    sdelete -z c:
+```
+
+### Shrink disk
+```
+cd /vmfs/volumes/FreeNAS/<vm name>/
+vmkfstools --punchzero <diskname>.vmdk
+```
