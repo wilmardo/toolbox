@@ -300,3 +300,15 @@ dd if=/dev/zero of=wipefile bs=1M; sync; rm -f wipefile
 cd /vmfs/volumes/FreeNAS/<vm name>/
 vmkfstools --punchzero <diskname>.vmdk
 ```
+
+# Kubernetes
+
+Remove all non running containers (Evicted, Failed, Completed etc)
+```
+kubectl get po --all-namespaces --field-selector 'status.phase!=Running' -o json | kubectl delete -f -
+```
+
+Remove only Failed containers:
+```
+kubectl get po --all-namespaces --field-selector 'status.phase==Failed' -o json | kubectl delete -f -
+```
