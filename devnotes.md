@@ -312,3 +312,19 @@ Remove only Failed containers:
 ```
 kubectl get po --all-namespaces --field-selector 'status.phase==Failed' -o json | kubectl delete -f -
 ```
+
+# Rsync
+
+Fast local data copy:
+
+```
+rsync -ahW --no-compress --info=progress2 /src /dst
+```
+
+```
+-a is for archive, which preserves ownership, permissions etc.
+-h is for human-readable, so the transfer rate and file sizes are easier to read (optional)
+-W is for copying whole files only, without delta-xfer algorithm which should reduce CPU load
+--no-compress as there's no lack of bandwidth between local devices
+--info=progress2 so I can see the progress
+```
