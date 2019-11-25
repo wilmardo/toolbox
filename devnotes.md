@@ -328,3 +328,11 @@ rsync -ahW --no-compress --info=progress2 /src /dst
 --no-compress as there's no lack of bandwidth between local devices
 --info=progress2 so I can see the progress
 ```
+
+# LVM
+
+Resize lvm to max available size and resize filesystem:
+
+```
+sudo lvextend -l 100%FREE --resizefs /dev/ubuntu-vg/ubuntu-lv
+```
