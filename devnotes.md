@@ -336,3 +336,9 @@ Resize lvm to max available size and resize filesystem:
 ```
 sudo lvextend -l 100%FREE --resizefs /dev/ubuntu-vg/ubuntu-lv
 ```
+
+# Get version from packages.json
+
+```
+version=$(sed -nE 's/"serialport": "([0-9]*\.[0-9]*\.[0-9]*)".*/v\1/p' /zigbee-herdsman/package.json
+```
