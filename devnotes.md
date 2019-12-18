@@ -342,3 +342,9 @@ sudo lvextend -l 100%FREE --resizefs /dev/ubuntu-vg/ubuntu-lv
 ```
 version=$(sed -nE 's/"serialport": "([0-9]*\.[0-9]*\.[0-9]*)".*/v\1/p' /zigbee-herdsman/package.json
 ```
+
+# Strace
+
+```
+strace -fff -e trace=open,close,read,write,connect,accept,stat ./zwave2mqtt
+```
