@@ -348,3 +348,10 @@ version=$(sed -nE 's/"serialport": "([0-9]*\.[0-9]*\.[0-9]*)".*/v\1/p' /zigbee-h
 ```
 strace -fff -e trace=open,close,read,write,connect,accept,stat ./zwave2mqtt
 ```
+
+# Hyper-V
+
+Setup internal network:
+
+Add internal switch, set ip addresss of interface in configuration manager. To for example 10.0.0.1
+Add new adapter to guest, set internal switch as connect, set static ip to for example 10.0.0.10, set gateway to ip address of adapter(10.0.0.1)
