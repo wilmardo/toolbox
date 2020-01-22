@@ -355,3 +355,15 @@ Setup internal network:
 
 Add internal switch, set ip addresss of interface in configuration manager. To for example 10.0.0.1
 Add new adapter to guest, set internal switch as connect, set static ip to for example 10.0.0.10, set gateway to ip address of adapter(10.0.0.1)
+
+# SSH hostke hack
+
+Switching hosts on same ip often, disable hostkey checking for all local ranges:
+
+`~/.ssh/config`
+```
+# Do not keep HostKeys for internal networks.
+Host 10.*.*.* 192.168.*.* 172.16.*.* 172.17.*.* 172.18.*.* 172.19.*.* 172.2?.*.* 172.30.*.* 172.31.*.*
+    UserKnownHostsFile /dev/null
+    StrictHostKeyChecking no
+```
