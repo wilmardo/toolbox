@@ -9,7 +9,6 @@ fi
 # Setup mount to /c/ instead of /mnt/c/
 cat <<EOF > /etc/wsl.conf
 [network]
-[network]
 generateResolvConf = false
 EOF
 
