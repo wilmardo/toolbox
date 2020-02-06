@@ -32,6 +32,9 @@ sudo apt-get install -y \
     
 # Install python3.8 from deadsnakes
 sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get install -y \
+    python3.8-dev \
+    python3.8-venv
 
 # Install ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
