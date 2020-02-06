@@ -28,7 +28,10 @@ sudo apt-get install -y \
     zsh \
     git \
     tmux \
-    python3-venv
+    build-essential
+    
+# Install python3.8 from deadsnakes
+sudo add-apt-repository ppa:deadsnakes/ppa
 
 # Install ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
