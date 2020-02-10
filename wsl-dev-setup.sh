@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# fail on all the things
+set -euo pipefail
+
+# Use to override lsb-release
+UBUNTU_VERSION=bionic
+
 if [ $EUID != 0 ]; then
     echo 'Script must be run as root, trying sudo...'
     sudo "$0" "$@"
@@ -24,14 +30,14 @@ sudo apt-get install -y \
     ca-certificates \
     curl \
     gnupg-agent \
-    software-properties-common
+    software-properties-common \
     zsh \
     git \
     tmux \
     build-essential
     
 # Install python3.8 from deadsnakes
-sudo add-apt-repository ppa:deadsnakes/ppa
+# sudo add-apt-repository "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu ${UBUNTU_VERSION} main"
 sudo apt-get install -y \
     python3.8-dev \
     python3.8-venv
@@ -45,25 +51,22 @@ if uname -r | grep -i -q Microsoft; then
     git clone https://github.com/seebi/dircolors-solarized term-config/dircolors-solarized
 fi
 
-# Setup dotfiles
-git clone --bare git@github.com:wilmardo/dotfiles.git $HOME/.cfg
-git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
-
 # Setup docker
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu ${UBUNTU_VERSION} stable"
 sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # Setup kubectl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
+
+# Setup dotfiles (clone over https to convert later)
+git clone --bare https://github.com/wilmardo/dotfiles.git $HOME/.cfg
+git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
 
 # Source new zsh config and delete old history
 source $HOME/.zshrc
