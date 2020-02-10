@@ -40,8 +40,10 @@ sudo apt-get install -y \
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Setup nice dir colors in WSL
-mkdir -p term-config/dircolors-solarized
-git clone https://github.com/seebi/dircolors-solarized term-config/dircolors-solarized
+if uname -r | grep -i -q Microsoft; then
+    mkdir -p term-config/dircolors-solarized
+    git clone https://github.com/seebi/dircolors-solarized term-config/dircolors-solarized
+fi
 
 # Setup dotfiles
 git clone --bare git@github.com:wilmardo/dotfiles.git $HOME/.cfg
