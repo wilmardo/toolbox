@@ -13,7 +13,9 @@ Remove jumper after comlete boot.
 
 ```
 sudo rock64_reset_emmc.sh
-xzcat bionic-minimal-rock64-0.8.0rc9-1120-arm64.img.xz | sudo dd of=/dev/mmcblk0 status=progress bs=4M 
+xzcat bionic-minimal-rock64-0.8.0rc9-1120-arm64.img.xz | sudo dd of=/dev/mmcblk0 status=progress bs=4M
+# Or with armbian
+7z x Armbian_20.02.1_Rock64_buster_current_5.4.20.7z -so | sudo dd of=/dev/mmcblk0 status=progress bs=4M
 ```
 
 ## Setup static ip
