@@ -368,5 +368,13 @@ Host 10.*.*.* 192.168.*.* 172.16.*.* 172.17.*.* 172.18.*.* 172.19.*.* 172.2?.*.*
     StrictHostKeyChecking no
 ```
 
-### FreeBSD arm64 iso
+### FreeBSD arm64 on Proxmox
+
+Download memstick image
 http://ftp4.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/
+
+Add a local disk to the VM and run
+
+```
+sudo dd if=FreeBSD-11.2-RELEASE-arm64-aarch64-memstick.img of=/var/lib/vz/images/105/vm-105-disk-0.raw
+```
