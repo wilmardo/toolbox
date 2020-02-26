@@ -367,3 +367,6 @@ Host 10.*.*.* 192.168.*.* 172.16.*.* 172.17.*.* 172.18.*.* 172.19.*.* 172.2?.*.*
     UserKnownHostsFile /dev/null
     StrictHostKeyChecking no
 ```
+
+### FreeBSD arm64 iso
+http://ftp4.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/
