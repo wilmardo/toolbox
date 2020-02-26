@@ -378,3 +378,8 @@ Add a local disk to the VM and run
 ```
 sudo dd if=FreeBSD-11.2-RELEASE-arm64-aarch64-memstick.img of=/var/lib/vz/images/105/vm-105-disk-0.raw
 ```
+
+### Find larger directories
+```
+du -sh /* | sort -hr | head
+```
