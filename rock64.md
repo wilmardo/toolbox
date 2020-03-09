@@ -18,7 +18,17 @@ xzcat bionic-minimal-rock64-0.8.0rc9-1120-arm64.img.xz | sudo dd of=/dev/mmcblk0
 7z x Armbian_20.02.1_Rock64_buster_current_5.4.20.7z -so | sudo dd of=/dev/mmcblk0 status=progress bs=4M
 ```
 
-## Setup static ip
+## Setup static on debian
+
+```
+# /etc/network/interfaces.d/eth0
+auto eth0
+iface eth0 inet static
+   address 192.168.1.11/24
+   gateway 192.168.1.1
+```
+
+## Setup static ip on ubuntu
 
 ```
 sudo netplan generate
