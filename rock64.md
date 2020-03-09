@@ -41,3 +41,21 @@ network:
 ```
 sudo netplan apply
 ```
+
+
+# Raspberry PI 4
+
+Install ubuntu from here:
+https://ubuntu.com/download/raspberry-pi
+
+Extend the root partition before plugging the SD in:
+```
+xzcat ubuntu-18.04.4-preinstalled-server-arm64+raspi3.img.xz | sudo dd of=/dev/mmcblk0 status=progress bs=30M
+sudo resize2fs /dev/mmcblk0p2
+```
+
+Setup ZFS
+```
+sudo apt install zfs-dkms
+zpool create storage /dev/sda /dev/sdb```
+```
