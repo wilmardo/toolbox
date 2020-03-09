@@ -66,6 +66,6 @@ sudo resize2fs /dev/mmcblk0p2
 
 Setup ZFS
 ```
-sudo apt install zfs-dkms
-zpool create storage /dev/sda /dev/sdb```
+sudo apt install zfs-dkms nfs-kernel-server
+zpool create storage /dev/sda /dev/sdb
 ```
