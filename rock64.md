@@ -67,5 +67,7 @@ sudo resize2fs /dev/mmcblk0p2
 Setup ZFS
 ```
 sudo apt install zfs-dkms nfs-kernel-server
-zpool create storage /dev/sda /dev/sdb
+zpool create data /dev/sda /dev/sdb
+zfs create data/anthillmob
+zfs set sharenfs=on data/anthillmob
 ```
