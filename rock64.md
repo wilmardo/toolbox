@@ -73,5 +73,5 @@ zfs set sharenfs=on data/anthillmob
 # Since NFS provisioner runs as user 1000
 sudo chown 1000:1000 /data/anthillmob
 # Disable spindown
-sudo sed -i "s/APMD_SPINDOWN=.*/APMD_SPINDOWN=0/" /etc/apm/event.d/20hdparm
+sudo sed -i "s/APMD_SPINDOWN=.*/APMD_SPINDOWN=240/" /etc/apm/event.d/20hdparm
 ```
