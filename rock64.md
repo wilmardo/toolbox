@@ -75,3 +75,12 @@ sudo chown 1000:1000 /data/anthillmob
 # Disable spindown
 sudo sed -i "s/APMD_SPINDOWN=.*/APMD_SPINDOWN=240/" /etc/apm/event.d/20hdparm
 ```
+
+Disable disk spindown, hdparm wasn't working
+```
+wget https://github.com/adelolmo/hd-idle/releases/download/v1.9/hd-idle_1.9_arm64.deb
+sudo dpkg -i hd-idle_1.9_arm64.deb
+sudo sed -i "s/START_HD_IDLE=.*/START_HD_IDLE=true/" /etc/default/hd-idle
+systemctl start hd-idle 
+systemctl enable hd-idle 
+```
