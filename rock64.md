@@ -52,6 +52,13 @@ network:
 sudo netplan apply
 ```
 
+# Overclock to max frequency
+
+```
+sudo sed -i "s/MAX_SPEED=.*/MAX_SPEED=1512000/" /etc/default/cpufrequtils 
+sudo systemctl restart cpufrequtils
+```
+
 
 # Raspberry PI 4
 
