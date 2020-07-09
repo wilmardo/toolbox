@@ -264,6 +264,14 @@ UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh
 ```
 `export ANSIBLE_SSH_CONTROL_PATH_DIR=/dev/shm`
 
+```
+# create list in loop
+register: "{{ list | default([]) + [ item ] }}"
+
+# create dict in loop
+register: "{{ dict | default({}) | combine({'key': item}) }}"
+```
+
 ## Zigbee2mqtt
 
 ### Reset router
