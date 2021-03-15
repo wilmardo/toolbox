@@ -159,6 +159,12 @@ bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "cl
 Enable NFS share
 `zfs set sharenfs=on mediastorage/downloads`
 
+https://www.reddit.com/r/DataHoarder/comments/5cq60b/zfs_array_sizes_im_really_confused/
+Set 1M for dataset where large files are stored and performance isn't needed:
+```
+ zfs set recordsize=1M mediastorage/new-movies
+```
+
 ## Raspberry pi
 
 ```
