@@ -165,6 +165,12 @@ Set 1M for dataset where large files are stored and performance isn't needed:
  zfs set recordsize=1M mediastorage/new-movies
 ```
 
+Can be done on creation:
+```
+zfs create -o recordsize=1M -o sharenfs=true mediastorage/new-tvshows
+```
+
+
 ## Raspberry pi
 
 ```
