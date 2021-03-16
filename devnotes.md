@@ -349,6 +349,13 @@ rsync -ahW --no-compress --info=progress2 /src /dst
 --info=progress2 so I can see the progress
 ```
 
+Fast local move:
+```
+rsync -avzh --remove-source-files --progress /source/ user@server:/target \
+&&  find /source -type d -empty -delete
+```
+
+
 # LVM
 
 Resize lvm to max available size and resize filesystem:
