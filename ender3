@@ -1,0 +1,8 @@
+## Z-probe offset
+
+### PLA
+E3D -02.875
+metal -02.250
+
+### PETG
+Metal nozzle -02.220
