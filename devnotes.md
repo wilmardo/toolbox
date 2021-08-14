@@ -410,3 +410,8 @@ sudo dd if=FreeBSD-11.2-RELEASE-arm64-aarch64-memstick.img of=/var/lib/vz/images
 ```
 du -sh /* | sort -hr | head
 ```
+
+### OpenSCAD
+
+Find coordinates after rotate and translate
+https://forum.openscad.org/How-to-find-the-current-x-y-z-location-tp25722p25731.html
