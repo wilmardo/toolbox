@@ -415,3 +415,15 @@ du -sh /* | sort -hr | head
 
 Find coordinates after rotate and translate
 https://forum.openscad.org/How-to-find-the-current-x-y-z-location-tp25722p25731.html
+
+
+### Syncthing
+
+Windows ignore patterns
+```
+!/Desktop
+!/Documents
+!/Pictures
+!/Videos
+*
+```
