@@ -197,6 +197,28 @@ crushtool -c crush_map_decompressed -o new_crush_map_compressed
 ceph osd setcrushmap -i new_crush_map_compressed
 ```
 
+```
+# Allow more usage on OSD's to rebalance
+ceph osd set-backfillfull-ratio
+
+# Reweight and rebalance cluster
+ceph osd reweight-by-utilization
+
+# Check status
+ceph osd status
+
+# Check progress
+ceph -w
+
+# Remove disks
+https://docs.ceph.com/docs/mimic/rados/operations/add-or-rm-osds/
+
+ceph osd out 1
+sudo systemctl stop ceph-osd@1
+ceph osd purge {id} --yes-i-really-mean-it
+pveceph createosd /dev/sdx
+```
+
 # Kubernetes 
 
 ## Ceph CSI troubleshoot
@@ -426,4 +448,26 @@ Windows ignore patterns
 !/Pictures
 !/Videos
 *
+```
+
+
+### PHP quote variables 
+
+```
+(\$.*?\[)([\w+]+[\w]+)(\])
+
+
+(\[)([a-zA-Z+]+[a-zA-Z_]+)(\])
+
+
+(\$\w+\s*\[(?![A-Z]+\]))([a-zA-Z_]+[\w]+)(\])
+
+(\$\w+\]?\[(?!\w*\(|\w*:)(?=[^\]]*[a-z])(\K[a-zA-Z_]+[\w]+)
+
+
+regex:
+(\[)([a-zA-Z0-9+]+[a-zA-Z_0-9]+)(\])
+
+replace:
+$1'$2'$3
 ```
