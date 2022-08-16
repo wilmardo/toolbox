@@ -244,6 +244,9 @@ for i in /sys/class/net/veth*/ifindex; do grep -l 16 $i; done
 
 # Run tcpdump on the veth returned
 sudo tcpdump -i vethdd0877ff -w test2.pcap
+
+# OR untested
+sudo tcpdump -i any host <Application pod IP or Ingress controller pod IP> -C 20 -W 200 -w /tmp/ingress.pcap
 ```
 
 
