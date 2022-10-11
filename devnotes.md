@@ -249,6 +249,19 @@ sudo tcpdump -i vethdd0877ff -w test2.pcap
 sudo tcpdump -i any host <Application pod IP or Ingress controller pod IP> -C 20 -W 200 -w /tmp/ingress.pcap
 ```
 
+## Namespace stuck on terminating
+
+List resource stuck in the namespace
+```
+kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found -n <terminating-namespace>
+```
+
+Remove stuck finalizers:
+```
+kubectl -n flux-system patch -p '{"metadata":{"finalizers":null}}' --type=merge <resource> <name>
+kubectl -n flux-system patch -p '{"metadata":{"finalizers":null}}' --type=merge helmchart flux-system-cert-manager 
+```
+
 
 # Windows
 
