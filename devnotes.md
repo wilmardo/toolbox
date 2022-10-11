@@ -262,6 +262,10 @@ kubectl -n flux-system patch -p '{"metadata":{"finalizers":null}}' --type=merge 
 kubectl -n flux-system patch -p '{"metadata":{"finalizers":null}}' --type=merge helmchart flux-system-cert-manager 
 ```
 
+Putting all together for a one fix all:
+```
+kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get -o name --ignore-not-found -n flux-system | xargs -n1 kubectl -n flux-system patch -p '{"metadata":{"finalizers":null}}' --type=merge
+```
 
 # Windows
 
