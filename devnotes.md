@@ -267,6 +267,15 @@ Putting all together for a one fix all:
 kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get -o name --ignore-not-found -n flux-system | xargs -n1 kubectl -n flux-system patch -p '{"metadata":{"finalizers":null}}' --type=merge
 ```
 
+## Delete secrets older then the latest matching by regex
+
+Sort json by creationTimestamp, reverse this and remove the first element (most recent one). Delete the rest:
+```
+kubectl get secrets -n <namespace> -o json | \
+jq -r '[.items[] | select(.metadata.name | test("secretname.*"))] | sort_by(.metdata.creationTimestamp) | reverse | del(.[0]) | .[].metadata.name' | \
+xargs -n1 kubectl -n <namespace> delete secret 
+```
+
 # Windows
 
 ## Fix component store corruption
