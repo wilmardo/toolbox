@@ -276,6 +276,12 @@ jq -r '[.items[] | select(.metadata.name | test("secretname.*"))] | sort_by(.met
 xargs -n1 kubectl -n <namespace> delete secret 
 ```
 
+## flux resume suspend
+
+```
+flux get hr --no-header --status-selector ready=false | tr -s ' ' | cut -d ' ' -f1 | xargs -n1 sh -c 'flux suspend hr $0 && flux resume hr $0'
+```
+
 # Windows
 
 ## Fix component store corruption
