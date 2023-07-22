@@ -36,6 +36,7 @@ echo "network: {config: disabled}" | sudo tee /etc/cloud/cloud.cfg.d/99-disable-
 sudo nano /etc/netplan/eth0.yaml
 ```
 
+https://github.com/canonical/netplan/blob/main/examples/static.yaml
 ```yaml
 network:
   version: 2
@@ -43,10 +44,11 @@ network:
   ethernets:
     eth0:
       addresses: [192.168.1.12/24]
-      gateway4: 192.168.1.1
+      routes:
+        - to: default
+          via: 192.168.1.1
       nameservers:
         addresses: [192.168.1.1]
-      dhcp4: no
 ```
 
 ```
