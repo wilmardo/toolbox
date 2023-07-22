@@ -30,8 +30,9 @@ iface eth0 inet static
 
 ## Setup static ip on ubuntu
 
+Disable cloud-init network when ` /etc/netplan/50-cloud-init.yaml` is present:
 ```
-sudo netplan generate
+echo "network: {config: disabled}" | sudo tee /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
 sudo nano /etc/netplan/eth0.yaml
 ```
 
