@@ -323,6 +323,14 @@ add this line:
 @reboot echo "powersave" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 ```
 
+## Ceph
+
+Cleanup inconsitancies in one time
+
+```
+sudo ceph health detail | grep pg | tail +3 | cut -d' ' -f6 | xargs -n1 sudo ceph pg repair
+```
+
 ## Static compile
 
 staticx, pyinstaller --onefile --add-data=/usr/bin/dist/python3.7
