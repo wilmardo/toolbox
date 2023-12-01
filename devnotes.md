@@ -514,3 +514,11 @@ regex:
 replace:
 $1'$2'$3
 ```
+
+### Shell pipeline see whats inbetween
+
+```console
+# echo foobar | tee /dev/tty | grep oo
+foobar
+foobar
+```
