@@ -522,3 +522,11 @@ $1'$2'$3
 foobar
 foobar
 ```
+
+### Only run somethign when regex is done
+
+```bash
+if perl -i -pe '$M += s/: {{/": |\n" . " " x 50 . "\@\{\{"/e;END{exit 1 unless $M>0}' "$file"; then
+   echo changed
+fi
+```
